@@ -1,31 +1,34 @@
-package com.example.myapplication;
+package com.example.animation_shareelement_recyclerview;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    private Button btnGo;
+    private RecyclerView recyclerView;
+    private SingerAdapter singerAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private ArrayList<Singer> arrayList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        this.btnGo = (Button) findViewById(R.id.btnGo);
-        btnGo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Activity2.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.enter_x, R.anim.exit_x);
-            }
 
-        });
+        arrayList= new ArrayList<>();
+        for (int i=0;i<=8;i++){
+            arrayList.add(new Singer("Love Story","Taylor Swift",R.drawable.taylorsmall));
+        }
 
-
+        recyclerView=findViewById(R.id.recyclerView);
+        singerAdapter=new SingerAdapter(arrayList,this);
+        recyclerView.setAdapter(singerAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        GridLayoutManager layoutManager= new GridLayoutManager(MainActivity.this,1,GridLayoutManager.VERTICAL,false);
+        recyclerView.setLayoutManager(layoutManager);
     }
-
-
 }
