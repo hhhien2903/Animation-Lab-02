@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         arrayList= new ArrayList<>();
         for (int i=0;i<=8;i++){
-            arrayList.add(new Singer("Love Story","Taylor Swift",R.drawable.taylorsmall));
+            arrayList.add(new Singer("Love Story","Taylor Swift",R.drawable.tayler));
         }
 
         recyclerView=findViewById(R.id.recyclerView);

@@ -66,7 +66,7 @@ public class SingerAdapter extends RecyclerView.Adapter<SingerAdapter.SingerView
                 @Override
                 public void onClick(View view) {
                     int mPosition=getLayoutPosition();
-                    Intent i=new Intent(context, PlayScreen.class);
+                    Intent i=new Intent(context, PlayActivity.class);
 //                    i.putExtra("txtName",singer.getTxtSinger());
 //                    i.putExtra("txtSinger",singer.getTxtSinger());
 //                    i.putExtra("imgHinh",singer.getImgHinh());
