@@ -1,5 +1,7 @@
-package com.example.animation_shareelement_recyclerview;
+package com.example.myapplication;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -9,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -32,11 +35,14 @@ public class SingerAdapter extends RecyclerView.Adapter<SingerAdapter.SingerView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SingerViewHolder holder, int position) {
-        Singer singer=mSingerList.get(position);
+    public void onBindViewHolder(@NonNull SingerViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        Singer singer= mSingerList.get(position);
         holder.txtSinger.setText(singer.getTxtSinger());
         holder.txtName.setText(singer.getTxtName());
         holder.imgHinh.setImageResource(singer.getImgHinh());
+        holder.singer = singer;
+        holder.position = position;
+
     }
 
     @Override
@@ -44,28 +50,32 @@ public class SingerAdapter extends RecyclerView.Adapter<SingerAdapter.SingerView
         return mSingerList.size();
     }
 
-    public class SingerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class SingerViewHolder extends RecyclerView.ViewHolder {
         public TextView txtName;
         public TextView txtSinger;
         public ImageView imgHinh;
+        public Singer singer;
+        public int position;
         public SingerViewHolder(@NonNull View itemView) {
             super(itemView);
             txtName=itemView.findViewById(R.id.txtName);
             txtSinger=itemView.findViewById(R.id.txtSinger);
             imgHinh=itemView.findViewById(R.id.imgHinh);
 
-            itemView.setOnClickListener(this);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int mPosition=getLayoutPosition();
+                    Intent i=new Intent(context, PlayScreen.class);
+//                    i.putExtra("txtName",singer.getTxtSinger());
+//                    i.putExtra("txtSinger",singer.getTxtSinger());
+//                    i.putExtra("imgHinh",singer.getImgHinh());
+                    ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                            (Activity) context, imgHinh, imgHinh.getTransitionName());
+                    context.startActivity(i, options.toBundle());
+                }
+            });
         }
 
-        @Override
-        public void onClick(View v) {
-            int mPosition=getLayoutPosition();
-            Singer s= mSingerList.get(mPosition);
-            Intent i=new Intent(context,PlayMusic.class);
-            i.putExtra("txtName",s.getTxtName());
-            i.putExtra("txtSinger",s.getTxtSinger());
-            i.putExtra("imgHinh",s.getImgHinh());
-            context.startActivity(i);
-        }
     }
 }

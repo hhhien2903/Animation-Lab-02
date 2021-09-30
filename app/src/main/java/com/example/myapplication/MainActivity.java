@@ -1,4 +1,4 @@
-package com.example.animation_shareelement_recyclerview;
+package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.transition.Fade;
+import android.view.View;
 
 import java.util.ArrayList;
 
@@ -18,6 +20,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Fade fade = new Fade();
+        View decor = getWindow().getDecorView();
+        getWindow().setEnterTransition(fade);
+        getWindow().setExitTransition(fade);
 
         arrayList= new ArrayList<>();
         for (int i=0;i<=8;i++){

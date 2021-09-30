@@ -6,12 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-public class LyricMusic extends AppCompatActivity {
+public class LyricScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lyric_music);
+        setContentView(R.layout.activity_lyric_screen);
 
         ImageView imgMusicLyric= findViewById(R.id.imgMusicLyric);
         imgMusicLyric.setOnClickListener(new View.OnClickListener() {

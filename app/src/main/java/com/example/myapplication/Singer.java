@@ -1,4 +1,4 @@
-package com.example.animation_shareelement_recyclerview;
+package com.example.myapplication;
 
 public class Singer {
     private String txtName;

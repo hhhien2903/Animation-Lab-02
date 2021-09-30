@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:transitionName="backgroundmove"
-    tools:context=".PlayMusic"
+    tools:context=".PlayScreen"
     android:background="@drawable/background_image_taylor">
 
     <ImageView
